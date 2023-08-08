@@ -9,6 +9,7 @@ class CartItem extends React.Component {
       img: ''
     }
     // this.increaseQuantity = this.increaseQuantity.bind(this);
+    //this.testing(); 
   }
   //Below promise make setState work synchronous and works as an API call, its just for testing purposes.
   // testing () {
