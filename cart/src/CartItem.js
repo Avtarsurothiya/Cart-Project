@@ -1,16 +1,6 @@
 import React from "react";
 class CartItem extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      price: 70000,
-      title: 'Mobile Phone',
-      qty: 1,
-      img: ''
-    }
-    // this.increaseQuantity = this.increaseQuantity.bind(this);
-    //this.testing(); 
-  }
+
   //Below promise make setState work synchronous and works as an API call, its just for testing purposes.
   // testing () {
   //   const promise = new Promise((resolve, reject) => {
@@ -30,8 +20,8 @@ class CartItem extends React.Component {
   //     console.log('state', this.state);
   //   });
   // }
-
-  increaseQuantity = () => {
+// Moving all below add subtract fn to cart.js
+  /* increaseQuantity = () => {
     // this.state.qty += 1;
     // console.log('this', this.state);
     // setState form 1
@@ -47,10 +37,10 @@ class CartItem extends React.Component {
     });
   }
   decreaseQuantity = () => {
-   const { qty } =this.state;
-   if (qty === 1){
-    return;
-   }
+    const { qty } = this.state;
+    if (qty === 1) {
+      return;
+    }
 
     // setState form 2 - if prevState required use this
     this.setState((prevState) => {
@@ -59,15 +49,20 @@ class CartItem extends React.Component {
       }
     });
   }
-
+ */
   render() {
-    const { price, title, qty } = this.state;
+    console.log('this.props', this.props);
+    const { price, title, qty } = this.props.product;
+    const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct} = this.props;
+
     return (
       <div className="cart-item">
+        {this.props.jsx}
         <div className="left-block">
           <img
             style={styles.image}
-            src="https://rukminim2.flixcart.com/image/850/1000/ktketu80/mobile/q/a/u/iphone-13-pro-mlw03hn-a-apple-original-imag6vpbvmfygne9.jpeg?q=20" />
+            //src="" 
+            />
         </div>
 
         <div className="right-block">
@@ -80,18 +75,27 @@ class CartItem extends React.Component {
               alt="incease"
               className="action-icons"
               src="https://cdn-icons-png.flaticon.com/128/4210/4210903.png"
-              onClick={this.increaseQuantity}
+              //onClick={() => this.props.onIncreaseQuantity(this.props.product)}
+              //OR
+              onClick={() => onIncreaseQuantity(product)}
+
+             // below method is when increasing from same file using this keyword
+             //onClick={this.increaseQuantity}
             />
             <img
               alt="decrease"
               className="action-icons"
               src="https://cdn-icons-png.flaticon.com/128/1665/1665765.png"
-              onClick={this.decreaseQuantity}
+              //onClick={() => this.props.onDecreaseQuantity(this.props.product)}
+              onClick={() => onDecreaseQuantity(product)}
+
             />
             <img
               alt="delete"
               className="action-icons"
               src="https://cdn-icons-png.flaticon.com/128/6096/6096937.png"
+              onClick={() => onDeleteProduct(product.id)}
+
             />
           </div>
         </div>
