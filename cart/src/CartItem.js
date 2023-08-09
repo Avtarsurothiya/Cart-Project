@@ -1,5 +1,5 @@
 import React from "react";
-class CartItem extends React.Component {
+//class CartItem extends React.Component {
 
   //Below promise make setState work synchronous and works as an API call, its just for testing purposes.
   // testing () {
@@ -50,26 +50,26 @@ class CartItem extends React.Component {
     });
   }
  */
-  render() {
-    console.log('this.props', this.props);
-    const { price, title, qty } = this.props.product;
-    const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct} = this.props;
-
-    return (
-      <div className="cart-item">
-        {this.props.jsx}
-        <div className="left-block">
-          <img
-            style={styles.image}
-            //src="" 
-            />
-        </div>
-
-        <div className="right-block">
-          <div style={{ fontSize: 25 }}>{title}</div>
-          <div style={{ color: '#777' }}>Rs {price} </div>
-          <div style={{ color: '#777' }}>Qty: {qty} </div>
-          <div className="cart-item-actions">
+ /*  render() {
+    console.log('this.props', this.props); */
+    const CartItem = (props) => {
+      const { price, title, qty } = props.product;
+      const {
+        product,
+        onIncreaseQuantity,
+        onDecreaseQuantity,
+        onDeleteProduct
+      } = props;
+      return (
+        <div className="cart-item">
+          <div className="left-block">
+            <img style={styles.image} />
+          </div>
+          <div className="right-block">
+            <div style={ { fontSize: 25 } }>{title}</div>
+            <div style={ { color: '#777' } }>Rs {price} </div>
+            <div style={ { color: '#777' } }>Qty: {qty} </div>
+            <div className="cart-item-actions">
             {/* Buttons */}
             <img
               alt="incease"
@@ -96,21 +96,20 @@ class CartItem extends React.Component {
               src="https://cdn-icons-png.flaticon.com/128/6096/6096937.png"
               onClick={() => onDeleteProduct(product.id)}
 
-            />
+              />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-const styles = {
-  image: {
-    height: 110,
-    width: 110,
-    borderRadius: 4,
-    background: '#ccc'
-  }
-}
-
-export default CartItem;
+        );
+      }
+      
+      const styles = {
+        image: {
+          height: 110,
+          width: 110,
+          borderRadius: 4,
+          background: '#ccc'
+        }
+      }
+      
+      export default CartItem;
